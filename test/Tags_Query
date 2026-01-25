@@ -15,17 +15,10 @@ DB_NAME = resource_path("Library_items.db")
 def dump_database():
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
-
-
-    print("\nTAGS")
-    cur.execute("SELECT id, tag FROM tags ORDER BY tag;")
     for row in cur.fetchall():
         print(row)
 
-    for row in cur.fetchall():
-        print(row)
-
-    print("\n=== ITEMS ===")
+    print("\nITEMS")
     cur.execute("""
         SELECT
             i.id,
