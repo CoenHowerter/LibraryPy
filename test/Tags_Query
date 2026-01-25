@@ -18,18 +18,11 @@ def dump_database():
     for row in cur.fetchall():
         print(row)
 
-    print("\nITEMS")
-    cur.execute("""
-        SELECT
-            i.id,
-            i.name,
-            i.description,
-            i.example,
-            l.name AS library
-        FROM items i
-        JOIN library l ON l.id = i.library_id
-        ORDER BY l.name, i.name;
-    """)
+    print("\nTAGS")
+    cur.execute("SELECT id, tag FROM tags ORDER BY tag;")
+    for row in cur.fetchall():
+        print(row)
+        
     for row in cur.fetchall():
         print(row)
 
