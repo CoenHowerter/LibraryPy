@@ -1,0 +1,32 @@
+import sqlite3
+import os
+import sys
+
+
+def resource_path(relative_path):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+
+DB_NAME = resource_path("Library_items.db")
+
+
+def dump_database():
+    conn = sqlite3.connect(DB_NAME)
+    cur = conn.cursor()
+
+    print("\nLIBRARIES")
+    cur.execute("SELECT id, name, description FROM library ORDER BY name;")
+    for row in cur.fetchall():
+        print(row)
+
+
+    for row in cur.fetchall():
+        print(row)
+
+    conn.close()
+
+
+if __name__ == "__main__":
+    dump_database()
